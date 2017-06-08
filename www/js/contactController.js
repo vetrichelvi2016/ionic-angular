@@ -30,4 +30,28 @@ var contactData = $http({
 
     })
   }
+//cursor position
+$('textarea').on('keyup mouseup mouseleave', function() {
+	caretPosition($(this));
+});
+
+function caretPosition(input) {
+	var start = input[0].selectionStart,
+		end = input[0].selectionEnd,
+		diff = end - start;
+
+	if (start >= 0 && start == end) {
+		$('.vis').html('Cursor Position: ' + start);
+	} else if (start >= 0) {
+  $('.vis').html('Cursor Position: ' + start + ' to ' + end + ' (' + diff + ' selected chars)');
+	}
+}
+//changefunction
+
+  $scope.myFunction = function(){
+    var x = document.getElementById("changetext");
+    x.value = x.value.toUpperCase();
+}
+//datepicker
+
 });

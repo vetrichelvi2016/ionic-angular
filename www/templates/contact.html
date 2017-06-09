@@ -11,10 +11,12 @@
 <span class="vis" style=“color:white”>Cursor Position: 0</span><br>
 
 Enter your input:<input type="text" id="changetext"  style="border-width: 2px;border-style: inset;border-color: initial;"
-ng-change="myFunction()">
+ng-click="myFunction()">
 
-
-
+<ionic-datepicker date="currentDate" min="minDate" max="maxDate" callback="datePickerCallback">
+    <button class="button button-block button-positive"> {{ currentDate | date:'MMMM/dd/yyyy' }} </button>
+</ionic-datepicker>
+ {{ currentDate | date:'MMMM/dd/yyyy' }}
 
 </ion-content>
 </ion-view>

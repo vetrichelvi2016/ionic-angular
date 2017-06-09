@@ -31,21 +31,21 @@ var contactData = $http({
     })
   }
 //cursor position
-$('textarea').on('keyup mouseup mouseleave', function() {
-	caretPosition($(this));
-});
-
-function caretPosition(input) {
-	var start = input[0].selectionStart,
-		end = input[0].selectionEnd,
-		diff = end - start;
-
-	if (start >= 0 && start == end) {
-		$('.vis').html('Cursor Position: ' + start);
-	} else if (start >= 0) {
-  $('.vis').html('Cursor Position: ' + start + ' to ' + end + ' (' + diff + ' selected chars)');
-	}
-}
+// $('textarea').on('keyup mouseup mouseleave', function() {
+// 	caretPosition($(this));
+// });
+//
+// function caretPosition(input) {
+// 	var start = input[0].selectionStart,
+// 		end = input[0].selectionEnd,
+// 		diff = end - start;
+//
+// 	if (start >= 0 && start == end) {
+// 		$('.vis').html('Cursor Position: ' + start);
+// 	} else if (start >= 0) {
+//   $('.vis').html('Cursor Position: ' + start + ' to ' + end + ' (' + diff + ' selected chars)');
+// 	}
+// }
 //changefunction
 
   $scope.myFunction = function(){
@@ -53,5 +53,16 @@ function caretPosition(input) {
     x.value = x.value.toUpperCase();
 }
 //datepicker
+$scope.currentDate = new Date();
+$scope.minDate = new Date(2000, 6, 1);
+$scope.maxDate = new Date(2018, 6, 31);
+
+$scope.datePickerCallback = function (val) {
+    if (!val) {
+        console.log('Date not selected');
+    } else {
+        console.log('Selected date is : ', val);
+    }
+};
 
 });

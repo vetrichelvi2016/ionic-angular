@@ -37,7 +37,7 @@ angular.module('starter', ['ionic', 'starter.controllers','ionic-datepicker',])
     views: {
       'menuContent': {
         templateUrl: 'templates/search.html',
-        controller:'AppCtrl'
+        controller:'searchController'
       }
     }
   })
@@ -46,7 +46,8 @@ angular.module('starter', ['ionic', 'starter.controllers','ionic-datepicker',])
       url: '/browse',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/browse.html',
+          controller:'browseController'
         }
       }
     })
@@ -79,5 +80,5 @@ angular.module('starter', ['ionic', 'starter.controllers','ionic-datepicker',])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/contact');
+  $urlRouterProvider.otherwise('/app/search');
 });

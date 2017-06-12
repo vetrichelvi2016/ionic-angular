@@ -1,4 +1,4 @@
-app.controller('contactController',function($scope,$stateParams,$http,$q,){
+app.controller('contactController',function($scope,$stateParams,$http,$q,$ionicModal){
 
   // $scope.getlist = function(){
   $scope.contactList = [
@@ -31,21 +31,21 @@ var contactData = $http({
     })
   }
 //cursor position
-// $('textarea').on('keyup mouseup mouseleave', function() {
-// 	caretPosition($(this));
-// });
-//
-// function caretPosition(input) {
-// 	var start = input[0].selectionStart,
-// 		end = input[0].selectionEnd,
-// 		diff = end - start;
-//
-// 	if (start >= 0 && start == end) {
-// 		$('.vis').html('Cursor Position: ' + start);
-// 	} else if (start >= 0) {
-//   $('.vis').html('Cursor Position: ' + start + ' to ' + end + ' (' + diff + ' selected chars)');
-// 	}
-// }
+$('textarea').on('keyup mouseup mouseleave', function() {
+	caretPosition($(this));
+});
+
+function caretPosition(input) {
+	var start = input[0].selectionStart,
+		end = input[0].selectionEnd,
+		diff = end - start;
+
+	if (start >= 0 && start == end) {
+		$('.vis').html('Cursor Position: ' + start);
+	} else if (start >= 0) {
+  $('.vis').html('Cursor Position: ' + start + ' to ' + end + ' (' + diff + ' selected chars)');
+	}
+}
 //changefunction
 
   $scope.myFunction = function(){
@@ -64,5 +64,40 @@ $scope.datePickerCallback = function (val) {
         console.log('Selected date is : ', val);
     }
 };
+
+$scope.toDoListItems = [{
+  task: 'Play chess',
+  status: 'not done'
+}, {
+  task: 'Solve Rubic Cube',
+  status: 'not done'
+}, {
+  task: 'Get a Job',
+  status:'on going'
+}];
+
+$scope.AddItem = function(data){
+	$scope.toDoListItems.push({task:data.newItem,status:'not done'});
+	 data.newItem = ' ';
+         $scope.closeModal();
+  };
+
+$ionicModal.fromTemplateUrl('modal.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
 
 });

@@ -1,4 +1,4 @@
-app.controller('browseController',function($scope,$stateParams,$http,$q,){
+app.controller('browseController',['$scope','dataShare',function($scope,$stateParams,$http,$q,dataShare){
 
   $scope.services = [
           {
@@ -33,4 +33,12 @@ app.controller('browseController',function($scope,$stateParams,$http,$q,){
           });
           return total;
         }
-});
+
+        $scope.text = '';
+        $scope.$on('data_shared',function(){
+        var text =  dataShare.getData();
+            console.log("browseController"+$scope.text);
+        $scope.text = text;
+      });
+    }
+]);
